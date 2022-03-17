@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 class BookList(APIView):
     def get(self, request, format=None):
-        books = Book.objecta.all()
+        books = Book.objects.all()
         serializer = BookSerializer(books, many=True)
         return Response(serializer.data)
 
@@ -18,7 +18,7 @@ class BookList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
-class BlogDetail(APIView):
+class BookDetail(APIView):
     def get_object(self, pk):
         try:
             return Book.objects.get(pk=pk)
